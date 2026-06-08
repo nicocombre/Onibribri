@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onigirazu</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fafaf8;
+    color: #1a1a18;
+    font-family: 'Spectral', serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 80px 60px;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid #1a1a18;
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.1em;
+  }
+
+  .sous-titre {
+    font-size: 16px;
+    font-weight: 300;
+    color: #555;
+    font-style: italic;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 14px;
+  }
+
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* LIGNES */
+  .ligne {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+
+  .ligne-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  /* COUCHES */
+  .couches {
+    margin: 14px 0;
+  }
+
+  .couche {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e6e0;
+    font-size: 14px;
+  }
+
+  .couche:last-child { border-bottom: none; }
+
+  .couche-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #bbb;
+    margin-right: 12px;
+  }
+
+  .couche-detail {
+    font-size: 12px;
+    color: #aaa;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* BARO */
+  .baro {
+    margin: 14px 0;
+  }
+
+  .baro-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .baro-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    width: 72px;
+  }
+
+  .baro-track {
+    flex: 1;
+    height: 2px;
+    background: #e8e6e0;
+  }
+
+  .baro-fill {
+    height: 100%;
+    background: #1a1a18;
+  }
+
+  .baro-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    width: 32px;
+    text-align: right;
+  }
+
+  /* PHASES */
+  .phase {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .phase:last-child { margin-bottom: 0; }
+
+  .phase-n {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #bbb;
+    min-width: 18px;
+    padding-top: 2px;
+  }
+
+  .phase-text { font-size: 14px; line-height: 1.6; }
+  .phase-text strong { font-weight: 600; font-style: normal; }
+
+  /* SEPARATEUR */
+  hr {
+    border: none;
+    border-top: 1px solid #e8e6e0;
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid #1a1a18;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.1em;
+  }
+
+  em { color: #555; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>Onigirazu</h1>
+    <span class="date">Juin 2026</span>
+  </div>
+  <p class="sous-titre">Note de réflexion. Ce document résume une exploration de concept de restauration rapide — le produit, le modèle, la stratégie.</p>
+</div>
+
+<!-- LE PRODUIT + BAROMETRE -->
+<div class="ligne">
+  <div class="section">
+    <div class="section-title">Le produit</div>
+    <p>Bloc alimentaire japonais en couches. Froid. Se mange à la main. Emballage kraft avec fenêtre — les couches sont visibles avant d'ouvrir.</p>
+    <p>Quand on coupe en deux, toutes les couches apparaissent simultanément. C'est le moment fort visuellement — natif pour les réseaux.</p>
+    <div class="couches">
+      <div class="couche">
+        <span><span class="couche-num">01</span>Nori, sésame, oignon frit</span>
+        <span class="couche-detail">finition</span>
+      </div>
+      <div class="couche">
+        <span><span class="couche-num">02</span>Sauce froide</span>
+        <span class="couche-detail">mayo wasabi · ponzu</span>
+      </div>
+      <div class="couche">
+        <span><span class="couche-num">03</span>Pickles colorés</span>
+        <span class="couche-detail">concombre · carotte · radis</span>
+      </div>
+      <div class="couche">
+        <span><span class="couche-num">04</span>Protéine froide</span>
+        <span class="couche-detail">saumon · poulet · tofu · bœuf</span>
+      </div>
+      <div class="couche">
+        <span><span class="couche-num">05</span>Riz vinaigré compressé</span>
+        <span class="couche-detail">base dense</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Transparence nutritionnelle</div>
+    <p>Pas un discours healthy. Un baromètre visuel, brandé, sur chaque emballage. Le client voit exactement ce qu'il mange. Il arbitre lui-même — sans qu'on lui dise quoi penser.</p>
+    <p>Les recettes vont du léger au généreux. Végé ou viande. Ce que tu prends, tu le sais.</p>
+    <p>C'est une tendance de fond documentée. Aux États-Unis, 80% des consommateurs déclarent faire attention aux protéines dans leur alimentation — pour la santé globale, pas par régime. En France, les recherches "produits fermentés" ont bondi de +1 900% sur Uber Eats en 2025. Les gens ne veulent plus simplement du healthy. Ils veulent savoir ce qu'ils mangent. Le marché US a déjà répondu — Sweetgreen a lancé début 2026 un menu affichant les macros de chaque bowl, co-créé avec des nutritionnistes. Ce positionnement arrive en Europe.</p>
+    <div class="baro">
+      <div class="baro-item">
+        <span class="baro-label">Protéines</span>
+        <div class="baro-track"><div class="baro-fill" style="width:75%"></div></div>
+        <span class="baro-val">32g</span>
+      </div>
+      <div class="baro-item">
+        <span class="baro-label">Glucides</span>
+        <div class="baro-track"><div class="baro-fill" style="width:58%"></div></div>
+        <span class="baro-val">48g</span>
+      </div>
+      <div class="baro-item">
+        <span class="baro-label">Lipides</span>
+        <div class="baro-track"><div class="baro-fill" style="width:33%"></div></div>
+        <span class="baro-val">14g</span>
+      </div>
+      <div class="baro-item">
+        <span class="baro-label">Calories</span>
+        <div class="baro-track"><div class="baro-fill" style="width:62%"></div></div>
+        <span class="baro-val">520</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- INSIGHT CENTRAL -->
+<div class="section">
+  <div class="section-title">L'insight de fréquence</div>
+  <div class="ligne">
+    <p>Le healthy classique crée un cycle : bowl vertueux → frustration → pizza → culpabilité → recommence. Ce cycle plafonne la fréquence à une ou deux fois par mois. Le baromètre casse ce cycle. Le client arbitre consciemment. Il peut prendre une version généreuse le mardi et légère le jeudi — sans que ça soit un événement. Le repas s'installe comme <em>rituel de la semaine</em> plutôt que repas-occasion.</p>
+    <p>Ce n'est ni un positionnement healthy ni un positionnement indulgent. C'est un positionnement d'honnêteté. Ce que tu manges, tu le sais. La cible de fréquence est autour d'une fois par semaine — contre une à deux fois par mois pour un poke bowl.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- AVANTAGES OPERATIONNELS -->
+<div class="section">
+  <div class="section-title">Pourquoi ce produit opérationnellement</div>
+  <div class="ligne-3">
+    <div>
+      <p style="font-weight:600;margin-bottom:6px">Zéro cuisson sur place</p>
+      <p style="font-size:13px;color:#555">Pas de hotte, pas d'extraction, pas de cuisine lourde. N'importe quel local commercial standard fait l'affaire — ancien pressing, vêtements, bureau. Invest initial radicalement réduit.</p>
+    </div>
+    <div>
+      <p style="font-weight:600;margin-bottom:6px">Voyage sans se dégrader</p>
+      <p style="font-size:13px;color:#555">24 à 48h en froid. Contrairement au poke bowl qui tient 30 minutes. Ce qui ouvre le delivery longue distance — mais surtout, à terme, la vocation naturelle du produit : devenir la référence du sandwich de transport. Gares, aéroports, le repas qu'on prend avant de prendre son train.</p>
+    </div>
+    <div>
+      <p style="font-weight:600;margin-bottom:6px">Validé à Paris</p>
+      <p style="font-size:13px;color:#555">Onigami a ouvert en juillet 2025 dans le 10e — premier restaurant parisien dédié à l'onigirazu. Le produit est validé. L'espace blanc : le passer à l'échelle.</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- MODELE + EXPANSION -->
+<div class="ligne">
+  <div class="section">
+    <div class="section-title">Le modèle — Catan</div>
+    <p style="margin-bottom:18px">Celui qui gagne c'est celui qui a le cycle d'action le plus rapide. La densité de points crée la visibilité. La visibilité crée l'effet réseau. Après un certain seuil, ça devient auto-alimenté.</p>
+    <div class="phase">
+      <span class="phase-n">01</span>
+      <span class="phase-text"><strong>Micro-points sur rue.</strong> 10–20m². Zéro salle, zéro chaise. Local commercial standard. Le même modèle que les enseignes poulet frit / riz qui se dupliquent vite à Paris — appliqué à la healthy food.</span>
+    </div>
+    <div class="phase">
+      <span class="phase-n">02</span>
+      <span class="phase-text"><strong>Cuisine centrale.</strong> Production quotidienne centralisée. Chaque micro-point = vitrine de marque + hub de livraison local. On résout le problème des dark kitchens : visibilité physique + volume delivery.</span>
+    </div>
+    <div class="phase">
+      <span class="phase-n">03</span>
+      <span class="phase-text"><strong>Réinvestissement total — 2 ans.</strong> 100% des bénéfices réinvestis en nouvelles ouvertures. Vitesse avant marge. Atteindre la masse critique avant que quelqu'un copie.</span>
+    </div>
+    <div class="phase">
+      <span class="phase-n">04</span>
+      <span class="phase-text"><strong>Canaux premium.</strong> Une fois la reconnaissance construite — gares, aéroports, corners en boulangeries, B2B entreprises, rayon frais GMS.</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Go-to-market — Premier point</div>
+    <p style="margin-bottom:18px">Pas de budget media. Une densité de notoriété construite à la main dans un rayon de 500 mètres.</p>
+    <div class="phase">
+      <span class="phase-n">—</span>
+      <span class="phase-text"><strong>Semaine 0.</strong> Budget ~1 000€. Repas offert à tous les commerçants et entreprises de la rue. Bouche-à-oreille forcé. On devient les cool kidz du quartier.</span>
+    </div>
+    <div class="phase">
+      <span class="phase-n">—</span>
+      <span class="phase-text"><strong>Cold Onigirazu.</strong> Briques livrées avec un message dans les boîtes des entreprises de la zone. L'équivalent du cold email — physique, mémorable, le produit parle de lui-même.</span>
+    </div>
+    <div class="phase">
+      <span class="phase-n">—</span>
+      <span class="phase-text"><strong>Cold call B2B local.</strong> RH et office managers dans un rayon de 500m. Offre plateau équipe. Premier canal de volume prévisible dès le départ.</span>
+    </div>
+    <div class="phase">
+      <span class="phase-n">—</span>
+      <span class="phase-text"><strong>Fréquence.</strong> Proximité physique, vitesse, pas de friction à la commande, variété suffisante, prix sous le seuil de réflexion. S'installer comme rituel de la semaine.</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Onigirazu</span>
+  <span>Note de réflexion — confidentielle</span>
+  <span>Juin 2026</span>
+</div>
+
+</body>
+</html>
